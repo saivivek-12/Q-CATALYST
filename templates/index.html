@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Catalyst Design System</title>
+    <!-- Google Fonts & Chart.js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-icon">⚛</div>
+                <div class="brand-text">
+                    <h1>Quantum Catalyst Design System<span class="accent-dot">.</span></h1>
+                    <p>Capstone Project: Develop a Quantum Simulation-based Catalyst Design System</p>
+                </div>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-btn active" data-tab="analyze-tab">Analyze</button>
+                <button class="nav-btn" data-tab="compare-tab">Compare</button>
+                <button class="nav-btn" data-tab="how-tab">How It Works</button>
+                <button class="nav-btn" data-tab="export-tab">Export</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+
+        <!-- TAB 1: ANALYZE -->
+        <section id="analyze-tab" class="tab-content active">
+            <div class="dashboard-grid">
+                
+                <!-- Left Panel: Active Site Selection & Config -->
+                <div class="card config-card">
+                    <div class="card-header">
+                        <h2>Active-Site Configuration</h2>
+                        <span class="badge badge-purple">Qiskit VQE Engine</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="material-select">Select Catalyst Material</label>
+                        <select id="material-select" class="form-control">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+
+                    <!-- Material Information Card -->
+                    <div id="material-info-card" class="info-card">
+                        <div class="info-title" id="info-material-name">Platinum</div>
+                        <div class="info-meta">
+                            <span class="tag" id="info-category">Noble metal</span>
+                            <span class="tag tag-reaction">Reaction: HER</span>
+                        </div>
+                        <div class="info-site" id="info-site-name">Pt active-site surrogate (under-coordinated site)</div>
+                    </div>
+
+                    <!-- Dynamic Site Inputs for MoS2 / WS2 / NiMo -->
+                    <div id="dynamic-site-controls" class="dynamic-controls hidden">
+                        <div class="divider"></div>
+                        <h4 class="sub-heading">Material-Specific Site Definition</h4>
+                        
+                        <div id="mos2-controls" class="control-group hidden">
+                            <div class="form-group">
+                                <label for="mos2-phase">Phase</label>
+                                <select id="mos2-phase" class="form-control site-param">
+                                    <option value="2H (semiconducting)">2H (semiconducting)</option>
+                                    <option value="1T (metallic)">1T (metallic)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mos2-edge">Edge Termination</label>
+                                <select id="mos2-edge" class="form-control site-param">
+                                    <option value="Mo-edge">Mo-edge</option>
+                                    <option value="S-edge">S-edge</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mos2-geometry">Local Geometry</label>
+                                <select id="mos2-geometry" class="form-control site-param">
+                                    <option value="Atop Mo site">Atop Mo site</option>
+                                    <option value="S-vacancy site">S-vacancy site</option>
+                                    <option value="Bridge site">Bridge site</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="nimo-controls" class="control-group hidden">
+                            <div class="form-group">
+                                <label for="nimo-fraction">Ni Fraction (0.0 to 1.0)</label>
+                                <input type="number" id="nimo-fraction" class="form-control site-param" value="0.50" min="0.10" max="0.90" step="0.05">
+                            </div>
+                            <div class="form-group">
+                                <label for="nimo-geometry">Interface Geometry</label>
+                                <select id="nimo-geometry" class="form-control site-param">
+                                    <option value="Ni-Mo interface step">Ni-Mo interface step</option>
+                                    <option value="Planar alloy surface">Planar alloy surface</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nimo-site">Adsorption Site</label>
+                                <select id="nimo-site" class="form-control site-param">
+                                    <option value="Interfacial bridge site">Interfacial bridge site</option>
+                                    <option value="Top Ni site">Top Ni site</option>
+                                    <option value="Top Mo site">Top Mo site</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Panel: Physical Model Controls & Controls -->
+                <div class="card controls-card">
+                    <div class="card-header">
+                        <h2>Model Controls</h2>
+                        <span class="badge badge-gray">Parameters</span>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="slider-distance">H* Adsorption Distance (Å)</label>
+                            <span class="slider-val" id="val-distance">1.55 Å</span>
+                        </div>
+                        <input type="range" id="slider-distance" min="1.10" max="2.20" step="0.05" value="1.55" class="custom-slider">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="slider-accessibility">Site Accessibility Factor</label>
+                            <span class="slider-val" id="val-accessibility">1.00</span>
+                        </div>
+                        <input type="range" id="slider-accessibility" min="0.20" max="1.50" step="0.05" value="1.00" class="custom-slider">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="slider-charge">Local Charge Parameter (e)</label>
+                            <span class="slider-val" id="val-charge">0.00</span>
+                        </div>
+                        <input type="range" id="slider-charge" min="-0.50" max="0.50" step="0.05" value="0.00" class="custom-slider">
+                    </div>
+
+                    <div class="action-bar">
+                        <button id="btn-run" class="btn btn-primary btn-block">
+                            <span class="icon">⚛</span> Run Quantum-Assisted Analysis
+                        </button>
+                    </div>
+
+                    <div id="stale-warning" class="alert alert-warning hidden">
+                        ⚠️ Parameters have changed. Click Run to re-calculate quantum ground state.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RESULTS & EVIDENCE CARDS SECTION -->
+            <div id="results-section" class="results-container">
+                <div class="results-header">
+                    <div>
+                        <h3 id="res-material-title">Platinum | Pt</h3>
+                        <p id="res-subtitle" class="text-muted">Pt active-site surrogate • under-coordinated Pt site</p>
+                    </div>
+                    <div id="decision-badge-container">
+                        <span id="decision-badge" class="badge-decision shortlist">SHORTLIST</span>
+                    </div>
+                </div>
+
+                <!-- 4 Evidence Cards -->
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <div class="card-label">1. ACTIVE SITE MODEL</div>
+                        <div class="card-value" id="card-val-model">DEFINED</div>
+                        <div class="card-sub" id="card-sub-model">Surrogate Cluster</div>
+                    </div>
+                    <div class="evidence-card">
+                        <div class="card-label">2. QUANTUM VQE ERROR</div>
+                        <div class="card-value status-pass" id="card-val-quantum">✓ Validated</div>
+                        <div class="card-sub" id="card-sub-quantum">Error: 1.78e-15 eV</div>
+                    </div>
+                    <div class="evidence-card">
+                        <div class="card-label">3. H* INTERACTION ENERGY</div>
+                        <div class="card-value" id="card-val-interaction">-0.1808 eV</div>
+                        <div class="card-sub">ΔE(cat+H* - cat)</div>
+                    </div>
+                    <div class="evidence-card">
+                        <div class="card-label">4. HER SCREENING PROXY</div>
+                        <div class="card-value" id="card-val-proxy">+0.0592 eV</div>
+                        <div class="card-sub">ΔG_H* (Target: 0.00 eV)</div>
+                    </div>
+                </div>
+
+                <!-- Reason & Action Box -->
+                <div class="decision-reason-box">
+                    <div class="reason-title">Evaluation Reason</div>
+                    <p id="decision-reason-text" class="reason-text">The HER screening proxy is +0.0592 eV, which lies inside the screening window (±0.10 eV).</p>
+                    <div class="action-title">Recommended Next Research Action</div>
+                    <p id="next-action-text" class="action-text">Use this active-site model for higher-fidelity investigation.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- TAB 2: COMPARE -->
+        <section id="compare-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Screening Comparison Across All Candidates</h2>
+                    <p class="text-muted">Compare calculated hydrogen adsorption free energy proxies (ΔG_H*)</p>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="comparison-chart" height="110"></canvas>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table" id="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Material</th>
+                                <th>Category</th>
+                                <th>Clean VQE (eV)</th>
+                                <th>Ads VQE (eV)</th>
+                                <th>ΔE_H* (eV)</th>
+                                <th>ΔG_H* (eV)</th>
+                                <th>VQE Error (eV)</th>
+                                <th>Decision Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-tbody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: HOW IT WORKS -->
+        <section id="how-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>How Quantum-Assisted Screening Works</h2>
+                    <p class="text-muted">Architecture of the VQE simulation and screening pipeline</p>
+                </div>
+                
+                <div class="pipeline-steps">
+                    <div class="step-card">
+                        <div class="step-num">01</div>
+                        <h3>Active-Site Definition</h3>
+                        <p>Parameterises d-band orbital offset, coordination number, and local charge into effective model parameters.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">02</div>
+                        <h3>Hamiltonian & VQE</h3>
+                        <p>Builds 2-qubit SparsePauliOp and solves ground state using Qiskit RealAmplitudes ansatz + SciPy BFGS.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">03</div>
+                        <h3>Exact Validation</h3>
+                        <p>Diagonalises identical Hamiltonian matrix using exact eigensolver to guarantee error &lt; 10⁻⁵ eV.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">04</div>
+                        <h3>HER Proxy & Decision</h3>
+                        <p>Calculates ΔG_H* = ΔE_H* + 0.24 eV and categorises into SHORTLIST, BORDERLINE, or NOT SHORTLISTED.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: EXPORT -->
+        <section id="export-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Research Data Export</h2>
+                    <p class="text-muted">Export complete screening datasets in CSV, JSON, or Markdown formats</p>
+                </div>
+
+                <div class="export-options">
+                    <div class="export-card">
+                        <h3>CSV Dataset</h3>
+                        <p>Tabular dataset suitable for Excel, Pandas, or R data analysis.</p>
+                        <a href="/api/export/csv" class="btn btn-secondary btn-block" download="q_catalyst_data.csv">Download CSV</a>
+                    </div>
+                    <div class="export-card">
+                        <h3>JSON Structure</h3>
+                        <p>Structured JSON output containing typed result dataclasses and inputs.</p>
+                        <a href="/api/export/json" class="btn btn-secondary btn-block" download="q_catalyst_data.json">Download JSON</a>
+                    </div>
+                    <div class="export-card">
+                        <h3>Markdown Report</h3>
+                        <p>Formatted research report document with tables and scientific conclusions.</p>
+                        <a href="/api/export/report" class="btn btn-secondary btn-block" download="q_catalyst_report.md">Download Report</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

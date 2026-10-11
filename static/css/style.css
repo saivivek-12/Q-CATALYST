@@ -1,0 +1,608 @@
+/* ==========================================================================
+   Quantum Catalyst Design System - Deep Navy Academic Research Portal
+   Style: Professional University Research Portal (Deep Navy + Royal Blue + White)
+   ========================================================================== */
+
+:root {
+    --bg-main: #f8fafc;
+    --navy-header: #0f172a;
+    --navy-header-border: #1e293b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --card-hover-border: #cbd5e1;
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    --accent-blue: #2563eb;
+    --accent-blue-hover: #1d4ed8;
+    --accent-cyan: #38bdf8;
+    
+    --pass-green-bg: #dcfce7;
+    --pass-green-text: #15803d;
+    --pass-green-border: #86efac;
+    
+    --warn-yellow-bg: #fef3c7;
+    --warn-yellow-text: #b45309;
+    --warn-yellow-border: #fde047;
+    
+    --fail-red-bg: #fee2e2;
+    --fail-red-text: #b91c1c;
+    --fail-red-border: #fca5a5;
+    
+    --info-blue-bg: #e0f2fe;
+    --info-blue-text: #0369a1;
+    --info-blue-border: #7dd3fc;
+
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -1px rgba(15, 23, 42, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Deep Navy Header Component (Academic Portal Style) */
+.app-header {
+    background-color: var(--navy-header);
+    border-bottom: 2px solid var(--accent-blue);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.0rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.brand-icon {
+    font-size: 2.0rem;
+    color: var(--accent-cyan);
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+.brand-text h1 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+.accent-dot {
+    color: var(--accent-cyan);
+    font-weight: 900;
+}
+
+.brand-text p {
+    font-size: 0.82rem;
+    color: #94a3b8;
+}
+
+/* Academic Nav Tabs */
+.nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-btn.active {
+    background: var(--accent-blue);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+/* Main Container Layout */
+.main-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2.0rem 1.5rem 3.5rem 1.5rem;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.8rem;
+}
+
+/* Academic Portal White Cards */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.card-header h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy-header);
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0.65rem 0.9rem;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.90rem;
+    outline: none;
+    transition: all 0.15s ease;
+}
+
+.form-control:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Academic Info Card */
+.info-card {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 1.1rem;
+    margin-top: 0.8rem;
+}
+
+.info-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 0.35rem;
+}
+
+.info-meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tag {
+    background: #ffffff;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+}
+
+.tag-reaction {
+    background: var(--pass-green-bg);
+    color: var(--pass-green-text);
+    border-color: var(--pass-green-border);
+}
+
+.info-site {
+    font-size: 0.84rem;
+    color: #2563eb;
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+/* Sliders */
+.slider-group {
+    margin-bottom: 1.2rem;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+}
+
+.slider-header label {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.slider-val {
+    font-size: 0.84rem;
+    font-family: var(--font-mono);
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
+.custom-slider {
+    width: 100%;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+}
+
+/* Primary Action Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--accent-blue);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+    background: var(--accent-blue-hover);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+}
+
+.badge-purple {
+    background: #f3e8ff;
+    color: #7e22ce;
+    border: 1px solid #d8b4fe;
+}
+
+.badge-gray {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.badge-decision {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 0.45rem 1.1rem;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.badge-decision.shortlist {
+    background: var(--pass-green-bg);
+    color: var(--pass-green-text);
+    border: 1px solid var(--pass-green-border);
+}
+
+.badge-decision.borderline {
+    background: var(--warn-yellow-bg);
+    color: var(--warn-yellow-text);
+    border: 1px solid var(--warn-yellow-border);
+}
+
+.badge-decision.not-shortlisted {
+    background: var(--fail-red-bg);
+    color: var(--fail-red-text);
+    border: 1px solid var(--fail-red-border);
+}
+
+.badge-decision.incomplete {
+    background: var(--info-blue-bg);
+    color: var(--info-blue-text);
+    border: 1px solid var(--info-blue-border);
+}
+
+/* Results Section */
+.results-container {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    box-shadow: var(--shadow-md);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.0rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.results-header h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--navy-header);
+}
+
+/* Evidence Grid Cards with Top Accent */
+.evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
+    margin-bottom: 1.6rem;
+}
+
+.evidence-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-top: 3px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 1.1rem;
+}
+
+.card-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
+    margin-bottom: 0.35rem;
+}
+
+.card-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--navy-header);
+    margin-bottom: 0.2rem;
+}
+
+.card-sub {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.status-pass {
+    color: var(--pass-green-text);
+}
+
+/* Decision Reason Box */
+.decision-reason-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid var(--navy-header);
+    border-radius: 8px;
+    padding: 1.3rem;
+}
+
+.reason-title, .action-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent-blue);
+    margin-bottom: 0.35rem;
+}
+
+.action-title {
+    margin-top: 1.0rem;
+}
+
+.reason-text, .action-text {
+    font-size: 0.92rem;
+    color: var(--text-primary);
+}
+
+/* Compare Tab */
+.chart-wrapper {
+    margin-bottom: 2.2rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.data-table th, .data-table td {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table th {
+    background: #f1f5f9;
+    color: var(--navy-header);
+    font-weight: 700;
+}
+
+.data-table td {
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+/* Pipeline Steps */
+.pipeline-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.3rem;
+    margin-top: 1.5rem;
+}
+
+.step-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-top: 3px solid var(--navy-header);
+    border-radius: 8px;
+    padding: 1.3rem;
+}
+
+.step-num {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--accent-blue);
+    margin-bottom: 0.5rem;
+}
+
+.step-card h3 {
+    font-size: 1.0rem;
+    font-weight: 700;
+    color: var(--navy-header);
+    margin-bottom: 0.5rem;
+}
+
+.step-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Export Options */
+.export-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.export-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.6rem;
+}
+
+.export-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy-header);
+    margin-bottom: 0.5rem;
+}
+
+.export-card p {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.3rem;
+}
+
+/* Alerts & Helpers */
+.hidden {
+    display: none !important;
+}
+
+.alert {
+    padding: 0.85rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.86rem;
+    margin-top: 1.0rem;
+}
+
+.alert-warning {
+    background: var(--warn-yellow-bg);
+    border: 1px solid var(--warn-yellow-border);
+    color: var(--warn-yellow-text);
+}
+
+.text-muted {
+    color: var(--text-secondary);
+}
+
+.divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 1.2rem 0;
+}
+
+.sub-heading {
+    font-size: 0.90rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-bottom: 0.8rem;
+}
